@@ -1,23 +1,19 @@
-import { GET_EMAIL } from '../../helpers/actionType';
+import { GET_EMAIL } from '../actions';
 
-const INITTIAL_STATE = {
+const INITIAL_STATE = {
   email: '',
-  // password: '',
-  name: '',
 };
 
-export default userReducer = (state = INITTIAL_STATE, action) => {
+const user = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case GET_EMAIL:
     return {
       ...state,
       email: action.payload,
     };
-  case GET_PASSWORD:
-    return {
-      ...state,
-    };
   default:
     return state;
   }
 };
+
+export default user;
