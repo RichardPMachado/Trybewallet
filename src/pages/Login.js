@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { actEmail } from '../redux/actions/index';
 
-export class Login extends React.Component {
+class Login extends React.Component {
   state = {
     isDisabled: true,
-    email: '',
-    password: '',
+    localEmail: '',
+    localPassword: '',
     isRedirected: false,
   };
 
@@ -19,26 +19,25 @@ export class Login extends React.Component {
 
   verifyBtn = () => {
     const minNumbersPassword = 6;
-    const { email, password } = this.state;
+    const { localEmail, localPassword } = this.state;
     const regex = /\S+@\S+\.\S+/;
-    const verifyEmail = regex.test(email);
-    const verifyPassword = password.length > minNumbersPassword;
+    const verifyEmail = regex.test(localEmail);
+    const verifyPassword = localPassword.length >= minNumbersPassword;
     const btnState = verifyEmail && verifyPassword;
     this.setState({ isDisabled: !(btnState) });
   };
 
   handleClick = (event) => {
     event.preventDefault();
-    console.log(event);
     const { dispatch } = this.props;
-    const { email } = this.state;
-    dispatch(actEmail(email));
+    const { localEmail } = this.state;
+    dispatch(actEmail(localEmail));
     console.log(dispatch);
     this.setState({ isRedirected: true });
   };
 
   render() {
-    const { isDisabled, isRedirected, email, password } = this.state;
+    const { isDisabled, isRedirected, localEmail, localPassword } = this.state;
     return (
       <main>
         <div className="container-login">
@@ -48,9 +47,9 @@ export class Login extends React.Component {
               <input
                 data-testid="email-input"
                 type="text"
-                name="email"
+                name="localEmail"
                 id="email-input"
-                value={ email }
+                value={ localEmail }
                 onChange={ this.handleInput }
               />
             </label>
@@ -59,9 +58,9 @@ export class Login extends React.Component {
               <input
                 data-testid="password-input"
                 type="password"
-                name="password"
+                name="localPassword"
                 id="password-input"
-                value={ password }
+                value={ localPassword }
                 onChange={ this.handleInput }
               />
             </label>
