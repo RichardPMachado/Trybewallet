@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { actEmail } from '../redux/actions/index';
+import './Login.css';
 
 class Login extends React.Component {
   state = {
@@ -24,7 +25,7 @@ class Login extends React.Component {
     const verifyEmail = regex.test(localEmail);
     const verifyPassword = localPassword.length >= minNumbersPassword;
     const btnState = verifyEmail && verifyPassword;
-    this.setState({ isDisabled: !(btnState) });
+    this.setState({ isDisabled: !btnState });
   };
 
   handleClick = (event) => {
@@ -41,10 +42,12 @@ class Login extends React.Component {
     return (
       <main>
         <div className="container-login">
-          <form>
-            <label htmlFor="email-input">
+          <form className="form-login">
+            <span className="title-login">$</span>
+            <label htmlFor="email-input" className="label-login">
               E-mail
               <input
+                className="input-login"
                 data-testid="email-input"
                 type="text"
                 name="localEmail"
@@ -53,9 +56,10 @@ class Login extends React.Component {
                 onChange={ this.handleInput }
               />
             </label>
-            <label htmlFor="password">
+            <label htmlFor="password" className="label-login">
               Senha
               <input
+                className="input-login"
                 data-testid="password-input"
                 type="password"
                 name="localPassword"
@@ -65,6 +69,7 @@ class Login extends React.Component {
               />
             </label>
             <button
+              className={ isDisabled ? 'button-disabled' : 'button-enabled' }
               type="submit"
               onClick={ this.handleClick }
               disabled={ isDisabled }
