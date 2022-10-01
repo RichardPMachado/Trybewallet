@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { actEmail } from '../redux/actions/index';
+import { actEmail, getCurrencyRequest } from '../redux/actions/index';
 import './Login.css';
 
 class Login extends React.Component {
@@ -33,7 +33,7 @@ class Login extends React.Component {
     const { dispatch } = this.props;
     const { localEmail } = this.state;
     dispatch(actEmail(localEmail));
-    console.log(dispatch);
+    getCurrencyRequest();
     this.setState({ isRedirected: true });
   };
 

@@ -1,17 +1,32 @@
-// const INITTIAL_STATE = {
-//   email: '',
-//   // password: '',
-//   // name: '',
-// };
+import { GET_API, EXPENSES_REQ } from '../actions';
 
-// export default wallet = (state = INITTIAL_STATE, action) => {
-//   switch (action.type) {
-//   case GET_EMAIL:
-//     return {
-//       ...state,
-//       email: action.payload,
-//     };
-//   default:
-//     return state;
-//   }
-// };
+const INITTIAL_STATE = {
+  currencies: [],
+  expenses: [],
+  editor: false,
+  idToEdit: 0,
+};
+
+const wallet = (state = INITTIAL_STATE, action) => {
+  switch (action.type) {
+  // case INICIAL_REQ:
+  //   return {
+  //     ...state,
+  //     loading: true,
+  //   };
+  case GET_API:
+    return {
+      ...state,
+      currencies: action.currencies,
+    };
+  case EXPENSES_REQ:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.expenses],
+    };
+  default:
+    return state;
+  }
+};
+
+export default wallet;
