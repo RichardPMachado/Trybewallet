@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import Select from 'react-select';
 import PropTypes from 'prop-types';
-import { fetchRatesAction } from '../redux/actions';
+import { getExpensesRequest } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
-    id: 1,
+    id: 0,
     value: '',
     description: '',
-    currency: 'BRL',
+    currency: 'USD',
     payment: 'Dinheiro',
     tag: 'Alimentação',
   };
@@ -19,40 +19,22 @@ class WalletForm extends Component {
   };
 
   handleClick = (e) => {
-    e.preventState();
-    const { ratesDispatch } = this.props;
-    // const { description, value, payment, currency, tag } = this.state;
-    ratesDispatch(this.state);
+    e.preventDefault();
+    const { expensesDispatch } = this.props;
+    expensesDispatch(this.state);
     this.setState((prevState) => ({
       id: prevState.id + 1,
       value: '',
       description: '',
-      currency: 'BRL',
+      currency: 'USD',
       payment: 'Dinheiro',
       tag: 'Alimentação',
     }));
   };
 
   render() {
-    const { currenciesTest } = this.props;
-    const { description, value, payment, currency, tag } = this.state;
-
-    // const options = [{ value: 'code', label: 'code' }];
-    // // const payment = [
-    // //   { value: 'cash', label: 'Dinheiro' },
-    // //   { value: 'credit', label: 'Cartão de crédito' },
-    // //   { value: 'debit', label: 'Cartão de débito' },
-    // // ];
-
-    // const tag = [
-    //   { value: 'food', label: 'Alimentação' },
-    //   { value: 'fun', label: 'Lazer' },
-    //   { value: 'work', label: 'Trabalho' },
-    //   { value: 'transport', label: 'Transport' },
-    //   { value: 'health', label: 'Saúde' },
-
-    // ];
-
+    const { currencies } = this.props;
+    const { description, value, method, currency, tag } = this.state;
     return (
       <div>
         <form>
@@ -75,7 +57,7 @@ class WalletForm extends Component {
               id="currency-input"
               value={ currency }
             >
-              { currenciesTest.map((e, i) => (
+              { currencies.map((e, i) => (
                 <option key={ `${i}-${e}` }>{e}</option>
               ))}
             </select>
@@ -91,8 +73,8 @@ class WalletForm extends Component {
           <label htmlFor="method-input">
             Método de pagamento:
             <select
-              name="payment"
-              value={ payment }
+              name="method"
+              value={ method }
               data-testid="method-input"
               id="method-input"
               onChange={ this.handleChange }
@@ -111,11 +93,11 @@ class WalletForm extends Component {
               id="tag-input"
               onChange={ this.handleChange }
             >
-              <option value="food">Alimentação</option>
-              <option value="fun">Lazer</option>
-              <option value="work">Trabalho</option>
-              <option value="transport">Transporte</option>
-              <option value="health">Saúde</option>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
             </select>
           </label>
           {/*
@@ -151,19 +133,18 @@ class WalletForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currenciesTest: state.wallet.currencies,
+  currencies: state.wallet.currencies,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  ratesDispatch: (state) => dispatch(fetchRatesAction(state)),
+  expensesDispatch: (state) => dispatch(getExpensesRequest(state)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
 
 WalletForm.propTypes = {
-  currenciesTest: PropTypes.arrayOf.isRequired,
+  currencies: PropTypes.arrayOf.isRequired,
   // reponseApi: PropTypes.objectOf.isRequired,
   // getRequest: PropTypes.func.isRequired,
-  // expenses: PropTypes.func.isRequired,
-  ratesDispatch: PropTypes.func.isRequired,
+  expensesDispatch: PropTypes.func.isRequired,
 };

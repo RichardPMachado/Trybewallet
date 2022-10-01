@@ -5,9 +5,16 @@ const INITTIAL_STATE = {
   expenses: [],
   editor: false,
   idToEdit: 0,
+  total: [],
 };
 
 const wallet = (state = INITTIAL_STATE, action) => {
+  const { payload } = action;
+  // const {
+  //   // currency,
+  //   value,
+  //   // exchangeRates
+  // } = payload;
   switch (action.type) {
   // case INICIAL_REQ:
   //   return {
@@ -17,12 +24,16 @@ const wallet = (state = INITTIAL_STATE, action) => {
   case GET_API:
     return {
       ...state,
-      currencies: action.currencies,
+      currencies: payload,
     };
   case EXPENSES_REQ:
     return {
       ...state,
-      expenses: [...state.expenses, action.expenses],
+      expenses: [...state.expenses, payload],
+      total: [...state.total,
+        Number(payload.value)
+        * Number(payload.exchangeRates[payload.currency].ask),
+      ],
     };
   default:
     return state;

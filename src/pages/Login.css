@@ -57,8 +57,8 @@ main {
 
 .input-login {
   font-size: calc(7px + 2vmin);
-  min-height: 40px;
-  min-width: 390px;
+  max-height: 40px;
+  max-width: 390px;
   padding-left: 10px ;
 }
 
