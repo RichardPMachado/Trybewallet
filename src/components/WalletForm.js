@@ -33,7 +33,7 @@ class WalletForm extends Component {
   };
 
   render() {
-    const { currencies } = this.props;
+    const { currenciesProps } = this.props;
     const { description, value, method, currency, tag } = this.state;
     return (
       <div>
@@ -56,7 +56,7 @@ class WalletForm extends Component {
               value={ currency }
               onChange={ this.handleChange }
             >
-              { currencies.map((e, i) => (
+              { currenciesProps.map((e, i) => (
                 <option key={ `${i}-${e}` }>{e}</option>
               ))}
             </select>
@@ -113,7 +113,7 @@ class WalletForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currencies: state.wallet.currencies,
+  currenciesProps: state.wallet.currencies,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -123,7 +123,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
 
 WalletForm.propTypes = {
-  currencies: PropTypes.arrayOf.isRequired,
+  currenciesProps: PropTypes.arrayOf.isRequired,
   // reponseApi: PropTypes.objectOf.isRequired,
   // getRequest: PropTypes.func.isRequired,
   expensesDispatch: PropTypes.func.isRequired,

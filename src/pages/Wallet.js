@@ -15,14 +15,16 @@ class Wallet extends React.Component {
 
   render() {
     return (
-      <div className="main-wallet">
+      <div className="container-wallet">
         <header>
           <Header />
         </header>
-        <main>
-          <WalletForm />
+        <div className="main-wallet">
+          <div className="main-wallet-form">
+            <WalletForm />
+          </div>
           <Table />
-        </main>
+        </div>
       </div>
     );
   }
