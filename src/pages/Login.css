@@ -1,21 +1,17 @@
 main {
   background-color: #282c34;
   display: flex;
-  height: 100vh;
-  width: 100vw;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  width: 100vw;
 }
-
-/* .App {
-  text-align: center; */
-/* } */
 
 .title-login {
   color: #61dafb;
   font-size: 100px;
-  margin-top: 10px;
   height: 10vmin;
+  margin-top: 10px;
   pointer-events: none;
 }
 
@@ -24,19 +20,18 @@ main {
   .title-login {
     animation: App-logo-spin infinite 20s linear;
   }
-  
 }
 
 .container-login {
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   background-color: #1a1d24;
   border: 4px solid #61dafb;
+  border-radius: 10%;
   color: white;
   display: flex;
   font-size: calc(10px + 2vmin);
   justify-content: center;
-  border-radius: 10%;
   min-height: 60vh;
   min-width: 30vw;
   box-shadow: 10px 6px rgba(0, 128, 128, 0.274);

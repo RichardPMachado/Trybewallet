@@ -10,17 +10,7 @@ const INITTIAL_STATE = {
 
 const wallet = (state = INITTIAL_STATE, action) => {
   const { payload } = action;
-  // const {
-  //   // currency,
-  //   value,
-  //   // exchangeRates
-  // } = payload;
   switch (action.type) {
-  // case INICIAL_REQ:
-  //   return {
-  //     ...state,
-  //     loading: true,
-  //   };
   case GET_API:
     return {
       ...state,
