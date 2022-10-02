@@ -9,7 +9,7 @@ class Header extends Component {
     } = this.props;
     return (
       <header>
-        <h3 data-testid="email-field">{ email }</h3>
+        <h3 data-testid="email-field">{ `Email: ${email}` }</h3>
         <h3 data-testid="total-field">
           { total.length < 1
             ? 0

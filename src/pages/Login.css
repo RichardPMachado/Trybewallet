@@ -20,6 +20,7 @@ main {
 }
 
 @media ( prefers-reduced-motion : no-preference ) {
+
   .title-login  {
     animation: App-logo-spin infinite 20s linear;
   }
@@ -43,15 +44,15 @@ main {
 .form-login {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .label-login {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   margin-top: 10%;
 }
 
