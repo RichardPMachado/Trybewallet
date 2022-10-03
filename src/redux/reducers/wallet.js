@@ -1,4 +1,4 @@
-import { GET_API, EXPENSES_REQ } from '../actions';
+import { GET_API, EXPENSES_REQ, EXPENSES_DELETE } from '../actions';
 
 const INITTIAL_STATE = {
   currencies: [],
@@ -24,6 +24,15 @@ const wallet = (state = INITTIAL_STATE, action) => {
         Number(payload.value)
         * Number(payload.exchangeRates[payload.currency].ask),
       ],
+    };
+  case EXPENSES_DELETE:
+    return {
+      ...state,
+      expenses: [...payload],
+      total: !payload ? []
+        : (
+          payload.map((e) => Number(e.value)
+      * Number(e.exchangeRates[e.currency].ask))),
     };
   default:
     return state;

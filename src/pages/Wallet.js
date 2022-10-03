@@ -1,17 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
 import Table from '../components/Table';
-import { getCurrencyRequest } from '../redux/actions';
+// import { getCurrencyRequest } from '../redux/actions';
 import './Wallet.css';
 
 class Wallet extends React.Component {
-  componentDidMount() {
-    const { currenciesDispatch } = this.props;
-    currenciesDispatch();
-  }
+  // componentDidMount() {
+  //   const { currenciesDispatch } = this.props;
+  //   currenciesDispatch();
+  // }
 
   render() {
     return (
@@ -30,12 +30,12 @@ class Wallet extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  currenciesDispatch: () => dispatch(getCurrencyRequest()),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   currenciesDispatch: () => dispatch(getCurrencyRequest()),
+// });
 
-export default connect(null, mapDispatchToProps)(Wallet);
+export default Wallet;
 
-Wallet.propTypes = {
-  currenciesDispatch: PropTypes.func.isRequired,
-};
+// Wallet.propTypes = {
+//   currenciesDispatch: PropTypes.func.isRequired,
+// };

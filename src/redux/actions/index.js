@@ -2,6 +2,7 @@ export const GET_EMAIL = 'GET_EMAIL';
 export const INITIAL_REQ = 'INITIAL_REQ';
 export const FINAL_REQ = 'FINAL_REQ';
 export const EXPENSES_REQ = 'EXPENSES_REQ';
+export const EXPENSES_DELETE = 'EXPENSES_DELETE';
 const URL_API = 'https://economia.awesomeapi.com.br/json/all';
 
 export const GET_API = 'GET_API';
@@ -11,6 +12,7 @@ const initialRequest = () => ({ type: INITIAL_REQ });
 const finalRequest = () => ({ type: FINAL_REQ });
 const responseApi = (payload) => ({ type: GET_API, payload });
 const actExpenses = (payload) => ({ type: EXPENSES_REQ, payload });
+const actExpensesDelete = (payload) => ({ type: EXPENSES_DELETE, payload });
 
 const fetchApi = async () => {
   const request = await fetch(URL_API);
@@ -49,5 +51,5 @@ export {
   actEmail, initialRequest,
   finalRequest, responseApi,
   getCurrencyRequest, actExpenses,
-  getExpensesRequest,
+  getExpensesRequest, actExpensesDelete,
 };
