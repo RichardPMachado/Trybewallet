@@ -5,8 +5,10 @@ import { actExpensesDelete } from '../redux/actions';
 
 class Table extends Component {
   handleClick = (id) => {
-    const { expensesProps, expensesPropsDelete } = this.props;
+    const { expensesPropsDelete, expensesProps } = this.props;
     const expensesFiltered = expensesProps.filter((e) => e.id !== id);
+    console.log(expensesFiltered);
+
     expensesPropsDelete(expensesFiltered);
   };
 

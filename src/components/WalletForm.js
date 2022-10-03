@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import Select from 'react-select';
 import PropTypes from 'prop-types';
-import { getCurrencyRequest, getExpensesRequest } from '../redux/actions';
+import { getExpensesRequest } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -14,12 +14,13 @@ class WalletForm extends Component {
     tag: 'Alimentação',
   };
 
-  componentDidMount() {
-    const { currenciesDispatch } = this.props;
-    currenciesDispatch();
-  }
+  // componentDidMount() {
+  //   const { currenciesDispatch } = this.props;
+  //   currenciesDispatch();
+  // }
 
-  handleChange = ({ target: { name, value } }) => {
+  handleChange = ({ target }) => {
+    const { name, value } = target;
     this.setState({ [name]: value });
   };
 
@@ -27,14 +28,14 @@ class WalletForm extends Component {
     e.preventDefault();
     const { expensesDispatch } = this.props;
     expensesDispatch(this.state);
-    this.setState((prevState) => ({
-      id: prevState.id + 1,
+    this.setState({
+      // id: prev.id + 1,
       value: '',
       description: '',
       currency: 'USD',
       method: 'Dinheiro',
       tag: 'Alimentação',
-    }));
+    });
   };
 
   render() {
@@ -43,27 +44,27 @@ class WalletForm extends Component {
     return (
       <div>
         <form>
-          {/* <label htmlFor="value"> */}
-          <span>Valor:</span>
-          <input
-            id="value"
-            data-testid="value-input"
-            type="number"
-            name="value"
-            value={ value }
-            onChange={ this.handleChange }
-          />
-          {/* </label> */}
-          {/* <label htmlFor="description-input"> */}
-          <span>Descrição:</span>
-          <textarea
-            data-testid="description-input"
-            id="description-input"
-            name="description"
-            value={ description }
-            onChange={ this.handleChange }
-          />
-          {/* </label> */}
+          <label htmlFor="value">
+            Valor:
+            <input
+              id="value"
+              data-testid="value-input"
+              type="number"
+              name="value"
+              value={ value }
+              onChange={ this.handleChange }
+            />
+          </label>
+          <label htmlFor="description-input">
+            Descrição:
+            <textarea
+              data-testid="description-input"
+              id="description-input"
+              name="description"
+              value={ description }
+              onChange={ this.handleChange }
+            />
+          </label>
           {/* <label htmlFor="currency" > */}
           <select
             data-testid="currency-input"
@@ -110,7 +111,6 @@ class WalletForm extends Component {
           {/* </label> */}
           <button
             type="submit"
-            data-testid="total-field"
             onClick={ this.handleClick }
           >
             Adicionar despesa
@@ -123,11 +123,12 @@ class WalletForm extends Component {
 
 const mapStateToProps = (state) => ({
   currenciesProps: state.wallet.currencies,
+  // expensesProps: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   expensesDispatch: (state) => dispatch(getExpensesRequest(state)),
-  currenciesDispatch: () => dispatch(getCurrencyRequest()),
+  // currenciesDispatch: () => dispatch(getCurrencyRequest()),
 
 });
 
@@ -135,8 +136,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
 
 WalletForm.propTypes = {
   currenciesProps: PropTypes.arrayOf.isRequired,
-  currenciesDispatch: PropTypes.func.isRequired,
+  // currenciesDispatch: PropTypes.func.isRequired,
   // reponseApi: PropTypes.objectOf.isRequired,
   // getRequest: PropTypes.func.isRequired,
+  // expensesProps: PropTypes.number.isRequired,
   expensesDispatch: PropTypes.func.isRequired,
 };

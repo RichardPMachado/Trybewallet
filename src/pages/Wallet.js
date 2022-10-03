@@ -1,24 +1,24 @@
 import React from 'react';
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
 import Table from '../components/Table';
-// import { getCurrencyRequest } from '../redux/actions';
+import { getCurrencyRequest } from '../redux/actions';
 import './Wallet.css';
 
 class Wallet extends React.Component {
-  // componentDidMount() {
-  //   const { currenciesDispatch } = this.props;
-  //   currenciesDispatch();
-  // }
+  componentDidMount() {
+    const { currenciesDispatch } = this.props;
+    currenciesDispatch();
+  }
 
   render() {
     return (
       <div className="container-wallet">
-        <header>
+        <div className="header-wallest">
           <Header />
-        </header>
+        </div>
         <div className="main-wallet">
           <div className="main-wallet-form">
             <WalletForm />
@@ -30,12 +30,12 @@ class Wallet extends React.Component {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   currenciesDispatch: () => dispatch(getCurrencyRequest()),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  currenciesDispatch: () => dispatch(getCurrencyRequest()),
+});
 
-export default Wallet;
+export default connect(null, mapDispatchToProps)(Wallet);
 
-// Wallet.propTypes = {
-//   currenciesDispatch: PropTypes.func.isRequired,
-// };
+Wallet.propTypes = {
+  currenciesDispatch: PropTypes.func.isRequired,
+};
