@@ -19,8 +19,7 @@ class WalletForm extends Component {
   //   currenciesDispatch();
   // }
 
-  handleChange = ({ target }) => {
-    const { name, value } = target;
+  handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   };
 
@@ -28,14 +27,14 @@ class WalletForm extends Component {
     e.preventDefault();
     const { expensesDispatch } = this.props;
     expensesDispatch(this.state);
-    this.setState({
-      // id: prev.id + 1,
+    this.setState((prevState) => ({
+      id: prevState.id + 1,
       value: '',
       description: '',
       currency: 'USD',
       method: 'Dinheiro',
       tag: 'Alimentação',
-    });
+    }));
   };
 
   render() {
@@ -44,27 +43,27 @@ class WalletForm extends Component {
     return (
       <div>
         <form>
-          <label htmlFor="value">
-            Valor:
-            <input
-              id="value"
-              data-testid="value-input"
-              type="number"
-              name="value"
-              value={ value }
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="description-input">
-            Descrição:
-            <textarea
-              data-testid="description-input"
-              id="description-input"
-              name="description"
-              value={ description }
-              onChange={ this.handleChange }
-            />
-          </label>
+          {/* <label htmlFor="value"> */}
+          <span>Valor:</span>
+          <input
+            id="value"
+            data-testid="value-input"
+            type="number"
+            name="value"
+            value={ value }
+            onChange={ this.handleChange }
+          />
+          {/* </label> */}
+          {/* <label htmlFor="description-input"> */}
+          <span>Descrição:</span>
+          <textarea
+            data-testid="description-input"
+            id="description-input"
+            name="description"
+            value={ description }
+            onChange={ this.handleChange }
+          />
+          {/* </label> */}
           {/* <label htmlFor="currency" > */}
           <select
             data-testid="currency-input"
@@ -120,10 +119,8 @@ class WalletForm extends Component {
     );
   }
 }
-
 const mapStateToProps = (state) => ({
   currenciesProps: state.wallet.currencies,
-  // expensesProps: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -139,6 +136,5 @@ WalletForm.propTypes = {
   // currenciesDispatch: PropTypes.func.isRequired,
   // reponseApi: PropTypes.objectOf.isRequired,
   // getRequest: PropTypes.func.isRequired,
-  // expensesProps: PropTypes.number.isRequired,
   expensesDispatch: PropTypes.func.isRequired,
 };

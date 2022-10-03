@@ -7,7 +7,7 @@ class Table extends Component {
   handleClick = (id) => {
     const { expensesPropsDelete, expensesProps } = this.props;
     const expensesFiltered = expensesProps.filter((e) => e.id !== id);
-    console.log(expensesFiltered);
+    // console.log(expensesFiltered);
 
     expensesPropsDelete(expensesFiltered);
   };
