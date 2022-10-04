@@ -36,4 +36,6 @@ describe('Checar página de login', () => {
     expect(button).not.toBeDisabled();
     expect(history.location.pathname).toBe('/carteira');
   });
+
+  // userEvent.selectOptions()
 });
