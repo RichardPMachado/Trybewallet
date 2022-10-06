@@ -50,12 +50,12 @@ class WalletForm extends Component {
     const { idToEdit, submitEditDispatch, expensesProps } = this.props;
     const { value, description, currency, method, tag } = this.state;
     const editExpenses = expensesProps;
-    const indexOfId = editExpenses.findIndex((el) => el.id === idToEdit);
-    editExpenses[indexOfId].value = value;
-    editExpenses[indexOfId].description = description;
-    editExpenses[indexOfId].currency = currency;
-    editExpenses[indexOfId].method = method;
-    editExpenses[indexOfId].tag = tag;
+    const expensesFinded = editExpenses.find((el) => el.id === idToEdit);
+    expensesFinded.value = value;
+    expensesFinded.description = description;
+    expensesFinded.currency = currency;
+    expensesFinded.method = method;
+    expensesFinded.tag = tag;
     console.log(editExpenses);
     submitEditDispatch(editExpenses);
     this.setState({
@@ -183,7 +183,7 @@ WalletForm.propTypes = {
   currenciesProps: PropTypes.array,
   // currenciesDispatch: PropTypes.func.isRequired,
   // reponseApi: PropTypes.objectOf.isRequired,
-  submitEditDispatch: PropTypes.func.isRequired,
+  submitEditDispatch: PropTypes.func,
   expensesDispatch: PropTypes.func,
   expensesProps: PropTypes.object,
   idToEdit: PropTypes.number,
