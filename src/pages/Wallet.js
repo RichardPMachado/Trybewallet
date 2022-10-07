@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
 import Table from '../components/Table';
 import { getCurrencyRequest } from '../redux/actions';
-import './Wallet.css';
+// import './Wallet.css';
 
 class Wallet extends React.Component {
   componentDidMount() {
