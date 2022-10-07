@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getExpensesRequest, actExpensesSubmitEdit } from '../redux/actions';
 
+const Alimentaçao = 'Alimentação';
 class WalletForm extends Component {
   state = {
     id: 0,
@@ -11,7 +12,7 @@ class WalletForm extends Component {
     description: '',
     currency: 'USD',
     method: 'Dinheiro',
-    tag: 'Alimentação',
+    tag: Alimentaçao,
   };
 
   handleChange = ({ target: { name, value } }) => {
@@ -41,7 +42,7 @@ class WalletForm extends Component {
       description: '',
       currency: 'USD',
       method: 'Dinheiro',
-      tag: 'Alimentação',
+      tag: Alimentaçao,
     }));
   };
 
@@ -63,7 +64,7 @@ class WalletForm extends Component {
       description: '',
       currency: 'USD',
       method: 'Dinheiro',
-      tag: 'Alimentação',
+      tag: Alimentaçao,
     });
   };
 
