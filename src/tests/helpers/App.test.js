@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndRedux } from './renderWith';
 import App from '../../App';
 import mockData from './mockData';
-// import WalletForm from '../../components/WalletForm';
 
 describe('Checar página de login', () => {
   it('Checar s e existe um email e password na tela', () => {
@@ -59,12 +58,39 @@ describe('Checar página de login', () => {
     const buttonDespesa = screen.getByRole('button', { name: /adicionar despesa/i });
     expect(buttonDespesa).toBeInTheDocument();
 
-    const valer = '10';
+    const valor = '10';
     const descricao = 'vai dar certo';
 
-    userEvent.type(valer);
+    userEvent.type(valor);
     userEvent.type(descricao);
 
     userEvent.click(buttonDespesa);
+  });
+
+  it('Verifica se o botao de editar e editar despesa aparecem na tela', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: jest.fn().mockResolvedValue(mockData),
+    });
+    renderWithRouterAndRedux(<App />, { initialEntries: ['/carteira'] });
+    const buttonDespesa = screen.getByRole('button', { name: /adicionar despesa/i });
+    const newDescription = screen.getByRole('textbox');
+
+    userEvent.type(newDescription, 'Richard');
+    userEvent.click(buttonDespesa);
+
+    const descriptionText = await screen.findByText('Richard');
+    const btnEdit = await screen.findByRole('button', { name: /Edit/i });
+
+    expect(descriptionText).toBeInTheDocument();
+    expect(btnEdit).toBeInTheDocument();
+    userEvent.click(btnEdit);
+
+    const buttonEdit = await screen.findByText(/editar despesa/i);
+    userEvent.type(newDescription, 'Festaaa');
+    userEvent.click(buttonEdit);
+
+    const newDescriptionText = await screen.findByText('Festaaa');
+    expect(newDescriptionText).toBeInTheDocument();
+    expect(btnEdit).toBeInTheDocument();
   });
 });
